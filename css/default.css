@@ -39,3 +39,33 @@
 .btn-group:hover .dropdown-menu {
     display: block;
 }
+
+.btn-group:hover a:hover .dropdown-menu {
+    display: none;
+}
+
+.name{
+    font-size: 35px;
+}
+
+.backgroundClass{
+    background: #333333;
+    color: white;
+    margin-top: -15px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 50px;
+    
+}
+.partTitle{
+    font-size: 20px;
+}
+.comimg{
+    width: 100px;
+    height: 50px;
+}
+
+.personalImg{
+    width: 50px;
+    height: 50px;
+}
