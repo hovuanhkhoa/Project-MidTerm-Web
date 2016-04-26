@@ -1,0 +1,41 @@
+@import url("bootstrap.min.css");
+
+@media (min-width: 1200px) {
+  .container {
+    width: 960px;
+   }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+   }
+ }
+
+.myImg{
+    width: 200px;
+    height: 200px;
+}
+
+.infoHeight{
+    min-height: 165px;
+}
+
+.blurLabel{
+    font-size: 11px;
+    color: #999;
+}
+
+.sendMail{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.dropdownMail{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.btn-group:hover .dropdown-menu {
+    display: block;
+}
