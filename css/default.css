@@ -12,6 +12,20 @@
    }
  }
 
+body{
+    background: #E9E9E9;
+    background-image: url("../img/backgroundimg.png");
+}
+
+#demo{
+    background: #E9E9E9;
+    background-image: url("../img/backgroupOpen.png");
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .myImg{
     width: 230px;
     height: 200px;
@@ -48,6 +62,10 @@
     font-size: 35px;
 }
 
+.job{
+    font-size: 18px;
+}
+
 .backgroundClass{
     background: #333333;
     color: white;
@@ -70,18 +88,11 @@
     height: 50px;
 }
 .inIcon{
-    width: 20px;
-    height: 20px
+    width: 15px;
+    height: 15px;
 }
 
 .infoButton{
-    margin-top: -10px;
     text-align: center;
-    padding-right: 25px;
-    line-height: 25px;
     background: #EEE;
-    border-radius: 0px;
-}
-.consHeight{
-    height: 40px;
 }

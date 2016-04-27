@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "App">
     
     <head>
         <meta charset="utf-8">
@@ -9,27 +9,31 @@
         <script src="./js/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
         <script src="./js/angular.min.js"></script>
+        
+        <script src="./js/default.js"></script>
+        
     </head>
     
-    <body>
+    <body ng-controller="profileController">
         <!-- Header -->
         <div class="container">
             <div class = "panel panel-default">
                 <!-- Header Body -->
                 <div class = "panel-body">
                     <div class="row">
-                        <img class = "col-md-3 myImg" src="./img/myImage.png" alt="My Image">
+                        
+                        <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image">
                         <div class = "col-md-9 infoHeight" >
-                            <span class = "row col-md-12 name"><b>Ho Vu Anh Khoa</b></span>
-                            <span class = "row col-md-12 job">Student at University of Science Ho Chi Minh City</span>
-                            <a href="#" class = "row col-md-12">Vietnam</a>
+                            <span class = "row col-md-12 name"><b>{{profile.name.firstname + " " + profile.name.middlename + " " + profile.name.lastname}}</b></span>
+                            <span class = "row col-md-12 job">{{profile.job}}</span>
+                            <a href="{{profile.nation.ref}}" class = "row col-md-2">{{profile.nation.name}}</a>
                             <p class="col-md-12"></p>
-                            <span class = "row col-md-12"><span class = "blurLabel">Education: </span>University of Science Ho Chi Minh City</span>
+                            <span class = "row col-md-12"><span class = "blurLabel">Education: </span>{{profile.education}}</span>
                         </div>
                         <div class = "col-md-9 row">
                             <div class="dropdown col-md-10">
                                 <div class="btn-group"> 
-                                    <a href="#" class="btn btn-primary sendMail">Send Khoa InMail</a> 
+                                    <a href="{{'mailto:' + profile.email}}" class="btn btn-primary sendMail">Send {{profile.name.lastname}} InMail</a> 
                                     <button class="btn btn-primary dropdown-toggle dropdownMail" type="button" data-toggle="dropdown"><span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">View recently activity</a></li>
@@ -45,7 +49,7 @@
                             <div class = "col-md-2">
                                 <table>
                                     <tr>
-                                        <td><b>0</b></td>
+                                        <td><b>{{profile.follow}}</b></td>
                                     </tr>
                                     <tr>
                                         <td class="blurLabel">connections</td>
@@ -61,7 +65,7 @@
                                 <span class="blurLabel">Email: </span>
                             </div>
                             <div class="col-md-4">
-                                <a href="hovuanhkhoa@gmail.com"><span>hovuanhkhoa@gmail.com</span></a>
+                                <a href="{{'mailto:' + profile.email}}"><span>{{profile.email}}</span></a>
                             </div>
                          </div>
                          
@@ -70,7 +74,7 @@
                                 <span class="blurLabel">Facebook: </span>
                             </div>
                             <div class="col-md-4">
-                                <a href="https://www.facebook.com/ho.v.khoa"><span>https://www.facebook.com/ho.v.khoa</span></a>
+                                <a href="{{profile.facebook}}"><span>{{profile.facebook}}</span></a>
                             </div>
                          </div>
                          
@@ -79,7 +83,7 @@
                                 <span class="blurLabel">Phone:</span>
                             </div>
                             <div class="col-md-4">
-                                <span>0932273448</span>
+                                <span>{{profile.phone}}</span>
                             </div>
                          </div>
                     </div>
@@ -88,15 +92,12 @@
 
 
 
-                <div class="panel-footer consHeight">
+                <div class="panel-footer">
                     <div class="row">
-                        <div class="col-md-1">
-                            <img src="img/inlogo.png" class="inIcon">
-                        </div>
                         <div class="col-md-9">
-                            <a href="https://vn.linkedin.com/in/hồ-khoa-a176b7119">https://vn.linkedin.com/in/hồ-khoa-a176b7119</a>
+                            <a href="{{profile.inlink}}"><img src="img/inlogo.png" class="inIcon"> {{profile.inlink}}</a>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-md-offset-1">
                           <button type="button" class="btn btn-default infoButton" data-toggle="collapse" data-target="#demo">
                               <img src="img/iconcontact.png" class="inIcon"><span> Contact Info</span>
                         </button>
@@ -123,12 +124,12 @@
                             <img src="img/Sumary.png">
                         </div>
                         <div class="col-md-11">
-                            <p class="partTitle">Sumary</p>
+                            <p class="partTitle">Summary</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>I'm a student of HCM University of Science. I'm a technician of infomation tecnology, software engineer. I love this job and I want to develop many skills about this.</p>
+                            <p>{{profile.summary.text}}</p>
                         </div>
                     </div>
                 </div>
@@ -147,23 +148,24 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>Software Engineer</h3>
+                            <h3>{{profile.experience.job}}</h3>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <p>In summer vacation, I was a freshser of VNG corporation.</p>
+                            <p>{{profile.experience.description}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-repeat="coporation in profile.experience.coporations">
                         <div class="col-md-8">
-                            <h4>VNG corporation</h4>
-                            <p>Fresher of VNG Corporation.</p>
+                            <h4>{{coporation.name}}</h4>
+                            <p>{{coporation.description}}</p>
                         </div>
                         <div class="col-md-2 col-md-offset-2">
-                            <img src="img/vng.png" class="comimg"></img>
-                        </div>    
+                            <a href="{{coporation.ref}}"><img ng-src="{{coporation.logo}}" class="comimg" alt="Coporation"></a>
+                        </div>  
+                    <br><br><br><br><br>
                     </div>
                 </div>
                 <!-- End Experience -->
@@ -178,61 +180,22 @@
                             <p class="partTitle">Project</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>MyPaint</h4>
-                            <p>MyPaint is developed in .Net framework. It can draw many thing, use many layout, merge layout and more. Paint can connect many people to draw in realtime. </p>
-                        </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="img/myImage.png" class="personalImg">
-                                <span>Ho Vu Anh Khoa</span>
-                            </a>
-                        </div> 
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Gomoku</h4>
-                            <p>Gomoku is developed in .Net framework and using MVVM pattern. It is a popular game in world. You can chat, play game and share various file to your partner. </p>
-                        </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="img/myImage.png" class="personalImg">
-                                <span>Ho Vu Anh Khoa</span>
-                            </a>
-                        </div> 
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="img/James.jpg" class="personalImg">
-                                <span>Pham Thanh My</span>
-                            </a>
-                        </div> 
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="img/Le.jpg" class="personalImg">
-                                <span>Bui Huu Le</span>
-                            </a>
-                        </div> 
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Calculator</h4>
-                            <p>Calculator is developed in android. It can calculate with perfect UI, UX.</p>
-                        </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img src="img/myImage.png" class="personalImg">
-                                <span>Ho Vu Anh Khoa</span>
-                            </a>
-                        </div> 
+                    <div ng-repeat="project in profile.projects">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>{{project.name}}</h4>
+                                <p>{{project.description}}</p>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4" ng-repeat="dev in project.developers">
+                                <a href="{{dev.fbref}}">
+                                    <img ng-src="{{dev.image}}" class="personalImg">
+                                    <span>{{dev.name}}</span>
+                                </a>
+                            </div> 
+                        </div>
+                        <br>
                     </div>
                 </div>
                 <!-- End Project -->
@@ -247,45 +210,19 @@
                             <p class="partTitle">Skills</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Top Skills</p>
+                    <div ng-repeat="skills in profile.skillboard">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>{{skills.name}}</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="#" class=" btn btn-default"> .Net</a>
-                            <a href="#" class=" btn btn-default"> Java</a>
-                            <a href="#" class=" btn btn-default"> Android</a>
-                            <a href="#" class=" btn btn-default"> C/C++</a>
-                            <a href="#" class=" btn btn-default"> Linux</a>
-                            <a href="#" class=" btn btn-default"> Network Programming</a>
-                            <a href="#" class=" btn btn-default"> Pattern</a>
-                            <a href="#" class=" btn btn-default"> Test</a>
-                            <a href="#" class=" btn btn-default"> Bussiness Analysis</a>
-                            <a href="#" class=" btn btn-default"> Web Develop</a>
-                            <a href="#" class=" btn btn-default"> Database</a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#" class=" btn btn-default" ng-repeat="skill in skills.skill"> {{skill}}</a>
+                            </div>
                         </div>
-                        
+                        <br>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Other Skills</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="#" class=" btn btn-default"> Teamworking</a>
-                            <a href="#" class=" btn btn-default"> Reading English</a>
-                            <a href="#" class=" btn btn-default"> Writing English</a>
-                            <a href="#" class=" btn btn-default"> Self-Learning</a>
-                        </div>
-                    </div>
-                    
-                    
                 </div>
                 <!-- End Skills -->
               <hr>
@@ -299,14 +236,15 @@
                             <p class="partTitle">Education</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-repeat="education in profile.educations">
                         <div class="col-md-8">
-                            <h4>HCM University of Science</h4>
-                            <p>Student of HCM University of Science.</p>
+                            <h4>{{education.name}}</h4>
+                            <p>{{education.description}}</p>
                         </div>
                         <div class="col-md-2 col-md-offset-2">
-                            <img src="img/logokhtn.png" class = "comimg">
+                            <a href="{{education.ref}}"><img ng-src="{{education.logo}}" class = "comimg"> </a>
                         </div>
+                        <br><br><br><br><br><br>
                     </div>
                 </div>
                 <!-- End Education -->
