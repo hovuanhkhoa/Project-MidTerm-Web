@@ -6,6 +6,10 @@
       "middlename": "Vu Anh",
       "lastname": "Khoa"
     },
+      "industry":{
+          "name":"Computer Software",
+          "ref":"https://www.linkedin.com/vsearch/p?f_I=4&trk=prof-0-ovw-industry"
+    },
     "job": "Student at University of Science Ho Chi Minh City",
     "nation":{ 
         "name":"VietNam",

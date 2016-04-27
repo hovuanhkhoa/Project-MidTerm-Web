@@ -26,7 +26,11 @@
                         <div class = "col-md-9 infoHeight" >
                             <span class = "row col-md-12 name"><b>{{profile.name.firstname + " " + profile.name.middlename + " " + profile.name.lastname}}</b></span>
                             <span class = "row col-md-12 job">{{profile.job}}</span>
-                            <a href="{{profile.nation.ref}}" class = "row col-md-2">{{profile.nation.name}}</a>
+                            <div class="row">
+                                <a href="{{profile.nation.ref}}" class="nation">{{profile.nation.name}}</a>
+                                <span> | </span>
+                                <a href="{{profile.industry.ref}}">{{profile.industry.name}}</a>
+                            </div>
                             <p class="col-md-12"></p>
                             <span class = "row col-md-12"><span class = "blurLabel">Education: </span>{{profile.education}}</span>
                         </div>
