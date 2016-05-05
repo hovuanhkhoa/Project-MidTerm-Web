@@ -25,24 +25,109 @@
                         <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image">
                         <div class = "col-md-9 infoHeight" >
                             <div class="row">
-                                <span class = "name"><b>{{profile.name.firstname + " " + profile.name.middlename + " " + profile.name.lastname}}</b></span>
-                                <button class = "btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                                <span class="name margin"><b>{{profile.name.firstname}}</b></span>
+                                <span class="name"><b>{{profile.name.middlename}}</b></span>
+                                <span class = "name"><b>{{profile.name.lastname}}</b></span>
+                                <button type="button" class = "btn btn-default btn-xs"  data-toggle="modal" data-target=".EditName" ng-click="onClickEditName()"><img class="icon" src="img/editicon.png"></button>
+                                <!-- Dialog -->
+                                <div class="modal fade EditName" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                  <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            Name Editor
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <span class="col-md-5">First Name:</span>
+                                                <input ng-model="firstname" class="col-md-6">
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-md-5">Middle Name:</span>
+                                                <input ng-model="middlename" class="col-md-6">
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-md-5">Last Name:</span>
+                                                <input ng-model="lastname" class="col-md-6">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                            <button type="button" class="btn btn-primary"  ng-click="onClickOKName()" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End Dialog -->
                             </div>
                             <div class="row">
-                                <span class = "job">{{profile.job}}</span>
-                                <button class = "btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                                <span class = "job margin">{{profile.job}}</span>
+                                <button class = "btn btn-default btn-xs" data-toggle="modal" data-target=".EditJob" ng-click="onClickEditJob()"><img class="icon" src="img/editicon.png"></button>
+                                <!-- Dialog -->
+                                <div class="modal fade EditJob" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                  <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            Job Editor
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <span class="col-md-3">Jobs:</span>
+                                                <input ng-model="job" class="col-md-8">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                            <button type="button" class="btn btn-primary"  ng-click="onClickOKJob()" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End Dialog -->
                             </div>
                             <div class="row">
                                 <a href="{{profile.nation.ref}}" class="nation">{{profile.nation.name}}</a>
                                 <span> | </span>
                                 <a href="{{profile.industry.ref}}">{{profile.industry.name}}</a>
-                                <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                                <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditNation" ng-click="onClickEditNation()"><img class="icon" src="img/editicon.png"></button>
+                                <!-- Dialog -->
+                                <div class="modal fade EditNation" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                  <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            Nation And Industry Editor
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <span class="col-md-3">Nation:</span>
+                                                <input ng-model="nation" class="col-md-8">
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-md-3">Nation Ref:</span>
+                                                <input ng-model="nationRef" class="col-md-8">
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-md-3">Industry:</span>
+                                                <input ng-model="industry" class="col-md-8">
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-md-3">Industry Ref:</span>
+                                                <input ng-model="industryRef" class="col-md-8">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                            <button type="button" class="btn btn-primary"  ng-click="onClickOKNation()" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End Dialog -->
                             </div>
                             <div class="row">
-                                <span class = "education"><span class = "blurLabel">Previous: </span>{{profile.educations[1].name}}</span>
+                                <span class = "margin education"><span class = "blurLabel">Previous: </span>{{profile.educations[1].name}}</span>
                             </div>
                             <div class = "row">
-                                <span class="education"><span class = "blurLabel">Education: </span>{{profile.educations[0].name}}</span>
+                                <span class="margin education"><span class = "blurLabel">Education: </span>{{profile.educations[0].name}}</span>
                                 <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                             </div>
                         </div>
@@ -76,6 +161,39 @@
                     </div>
                      <div id="demo" class="collapse">
                          <hr>
+                         <div class = "row">
+                            <span class="margin">Contact Info:</span>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditContact" ng-click="onClickEditContact()"><img class="icon" src="img/editicon.png"></button>
+                             <!-- Dialog -->
+                            <div class="modal fade EditContact" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                              <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        Contact Editor
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <span class="col-md-3">Email:</span>
+                                            <input ng-model="email" class="col-md-8">
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-md-3">Facebook:</span>
+                                            <input ng-model="facebook" class="col-md-8">
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-md-3">Phone:</span>
+                                            <input ng-model="phone" class="col-md-8">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                        <button type="button" class="btn btn-primary"  ng-click="onClickOKContact()" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- End Dialog -->
+                         </div>
                          <div class="row">
                             <div class="col-md-2">
                                 <span class="blurLabel">Email: </span>
@@ -83,7 +201,6 @@
                             <div class="col-md-4">
                                 <a href="{{'mailto:' + profile.email}}"><span>{{profile.email}}</span></a>
                             </div>
-                             <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                          </div>
                          
                           <div class="row">
@@ -93,7 +210,7 @@
                             <div class="col-md-4">
                                 <a href="{{profile.facebook}}"><span>{{profile.facebook}}</span></a>
                             </div>
-                              <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+
                          </div>
                          
                        <div class="row">
@@ -103,7 +220,6 @@
                             <div class="col-md-4">
                                 <span>{{profile.phone}}</span>
                             </div>
-                           <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                          </div>
                     </div>
                 </div>

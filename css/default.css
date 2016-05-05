@@ -62,15 +62,14 @@ body{
 }
 
 .name{
-    margin-left: 15px;
     font-size: 35px;
 }
 
 .job{
-    margin-left: 15px;
     font-size: 18px;
 }
-.education{
+
+.margin{
     margin-left: 15px;
 }
 

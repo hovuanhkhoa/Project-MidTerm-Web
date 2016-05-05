@@ -2,6 +2,52 @@ var App = angular.module('App', []);
 
 App.controller('profileController', function($scope, $http) {
   $http.get('./data/profile.json').then(function(res){
-          $scope.profile = res.data[0];                
-        });
+    $scope.profile = res.data;   
+  });
+    
+     $scope.onClickEditName = function(){
+        $scope.firstname = $scope.profile.name.firstname;
+        $scope.middlename = $scope.profile.name.middlename;
+        $scope.lastname = $scope.profile.name.lastname;
+    };
+    
+    $scope.onClickOKName = function(){
+        $scope.profile.name.firstname = $scope.firstname;
+        $scope.profile.name.middlename = $scope.middlename;
+        $scope.profile.name.lastname = $scope.lastname;
+    };
+    
+     $scope.onClickEditJob = function(){
+        $scope.job = $scope.profile.job;
+    };
+    
+    $scope.onClickOKJob = function(){
+        $scope.profile.job = $scope.job;
+    };
+    
+     $scope.onClickEditNation = function(){
+        $scope.nation = $scope.profile.nation.name;
+        $scope.nationRef = $scope.profile.nation.ref;
+        $scope.industry = $scope.profile.industry.name;
+        $scope.industryRef = $scope.profile.industry.ref;
+    };
+    
+    $scope.onClickOKNation = function(){
+        $scope.profile.nation.name = $scope.nation;
+        $scope.profile.nation.ref = $scope.nationRef;
+        $scope.profile.industry.name =  $scope.industry;
+        $scope.profile.industry.ref = $scope.industryRef;
+    };
+    
+     $scope.onClickEditContact = function(){
+        $scope.email = $scope.profile.email;
+        $scope.facebook = $scope.profile.facebook;
+        $scope.phone = $scope.profile.phone;
+    };
+    
+    $scope.onClickOKContact = function(){
+        $scope.profile.email= $scope.email;
+        $scope.profile.facebook= $scope.facebook;
+        $scope.profile.phone= $scope.phone;
+    };
 });

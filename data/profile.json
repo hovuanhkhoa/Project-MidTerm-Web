@@ -1,5 +1,4 @@
-[
-  {
+{
     "image": "./img/myImage.png",
     "name": {
       "firstname": "Ho",
@@ -128,4 +127,3 @@
       }
     ]
   }
-]
