@@ -338,9 +338,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-md-12">
-                            <p>{{profile.experience.description}}</p>
-                        </div>
+                        <textarea id="MyTextAreaEx" ng-model="profile.experience.description" ng-mousemove="autoExpand('MyTextAreaEx')" class="col-md-12 textareaDes" readonly></textarea>
                     </div>
                     <div class="row" ng-repeat="coporation in profile.experience.coporations">
                         <div class="col-md-8">
