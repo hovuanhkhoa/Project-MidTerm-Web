@@ -261,12 +261,31 @@
                         <div class="col-md-10">
                             <p class="partTitle">Summary</p>
                         </div>
-                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditSummary" ng-click="onClickEditSummary()"><img class="icon" src="img/editicon.png"></button>
+                        <!-- Dialog -->
+                        <div class="modal fade EditSummary" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Summary Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-3">Summary:</span>
+                                        <textarea ng-model="summary" class="col-md-8 textareainDialog"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKSummary()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <p>{{profile.summary.text}}</p>
-                        </div>
+                        <textarea id="MyTextArea" ng-model="profile.summary.text" ng-mousemove="autoExpand('MyTextArea')" class="col-md-12 textareaDes" readonly></textarea>
                     </div>
                 </div>
                 <!-- End Sumary -->
@@ -280,7 +299,37 @@
                         <div class="col-md-10">
                             <p class="partTitle">Experience</p>
                         </div>
-                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditExperience" ng-click="onClickEditExperience()"><img class="icon" src="img/editicon.png"></button>
+                        <!-- Dialog -->
+                        <div class="modal fade EditExperience" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Experience Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-3">Job:</span>
+                                        <input ng-model="Exjob" class="col-md-8">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Description:</span>
+                                        <textarea ng-model="ExDes" class="col-md-8 textareainDialog"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Add Company:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickAddCoporation()" >Add Company</button>
+                                        
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKExperience()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                     </div>
                     
                     <div class="row">
@@ -299,11 +348,45 @@
                             <h4>{{coporation.name}}</h4>
                             <p>{{coporation.description}}</p>
                         </div>
-                        <div class="col-md-2 col-md-offset-2">
+                        <div class="col-md-2 col-md-offset-1">
                             <a href="{{coporation.ref}}"><img ng-src="{{coporation.logo}}" class="comimg" alt="Coporation"></a>
                         </div>  
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditCoporation" ng-click="onClickEditCoporation(coporation)"><img class="icon" src="img/editicon.png"></button>
                     <br><br><br><br><br>
                     </div>
+                    <!-- Dialog -->
+                        <div class="modal fade EditCoporation" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Company
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-3">Coporation Name:</span>
+                                        <input ng-model="ComName" class="col-md-8">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Coporation Ref:</span>
+                                        <input ng-model="ComRef" class="col-md-8">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Coporation Logo:</span>
+                                        <input ng-model="ComLogo" class="col-md-8">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Coporation Description:</span>
+                                        <textarea ng-model="ComDes" class="col-md-8 textareainDialog"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKCoporation()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                 </div>
                 <!-- End Experience -->
               <hr>
@@ -386,10 +469,12 @@
                         </div>
                         <br><br><br><br><br><br>
                     </div>
+                    <input ng-model="inputt"></input>
                 </div>
                 <!-- End Education -->
               </div>
           </div>
         </div>
+        
     </body>
 </html>

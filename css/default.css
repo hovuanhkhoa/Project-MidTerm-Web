@@ -103,3 +103,15 @@ body{
     text-align: center;
     background: #EEE;
 }
+
+.textareainDialog {
+    resize: vertical;
+    min-height: 200px;
+    max-height: 350px;
+}
+
+.textareaDes{
+    resize: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}

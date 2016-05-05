@@ -5,6 +5,11 @@ App.controller('profileController', function($scope, $http) {
     $scope.profile = res.data;   
   });
     
+    $scope.autoExpand = function(e) {
+        var element = typeof e === 'object' ? e.target : document.getElementById(e);
+        element.style.height =  element.scrollHeight + "px";    
+    };
+    
      $scope.onClickEditName = function(){
         $scope.firstname = $scope.profile.name.firstname;
         $scope.middlename = $scope.profile.name.middlename;
@@ -50,4 +55,52 @@ App.controller('profileController', function($scope, $http) {
         $scope.profile.facebook= $scope.facebook;
         $scope.profile.phone= $scope.phone;
     };
+    
+     $scope.onClickEditSummary = function(){
+         $scope.summary= $scope.profile.summary.text;
+    };
+    
+    $scope.onClickOKSummary = function(){
+       $scope.profile.summary.text = $scope.summary;
+    };
+    
+     $scope.onClickEditExperience = function(){
+         $scope.Exjob= $scope.profile.experience.job;
+         $scope.ExDes= $scope.profile.experience.description;
+    };
+    
+    $scope.onClickOKExperience = function(){
+        $scope.profile.experience.job = $scope.Exjob;
+        $scope.profile.experience.description = $scope.ExDes;
+    };
+    
+    $scope.tmpCom;
+    
+     $scope.onClickEditCoporation = function(c){
+         tmpCom = c;
+         $scope.ComName = tmpCom.name;
+         $scope.ComRef = tmpCom.ref;
+         $scope.ComLogo = tmpCom.logo;
+         $scope.ComDes = tmpCom.description;
+    };
+    
+    $scope.onClickOKCoporation = function(){
+        tmpCom.name = $scope.ComName;
+        tmpCom.ref = $scope.ComRef;
+        tmpCom.logo = scope.ComLogo;
+        tmpCom.description = $scope.ComDes;
+    };
+    
+    $scope.onClickAddCoporation = function(){
+        $scope.profile.experience.coporations.push({
+          name: "New Corporation",
+          description: "About corporation",
+          ref:"http://www.TheirWebSite.com",
+          logo: "./img/logoSample.png"
+        });
+    };
+    
+    
+    
+    
 });
