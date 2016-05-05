@@ -87,7 +87,7 @@ App.controller('profileController', function($scope, $http) {
     $scope.onClickOKCoporation = function(){
         $scope.tmpCom.name = $scope.ComName;
         $scope.tmpCom.ref = $scope.ComRef;
-        $scope.tmpCom.logo = scope.ComLogo;
+        $scope.tmpCom.logo = $scope.ComLogo;
         $scope.tmpCom.description = $scope.ComDes;
     };
     
@@ -103,7 +103,7 @@ App.controller('profileController', function($scope, $http) {
     $scope.onClickRemoveCoporation = function(){
         var t = $scope.profile.experience.coporations;
         for(var i =0; i<t.length ; i++){
-            if(t[i].name === tmpCom.name){
+            if(t[i].name === $scope.tmpCom.name){
                 $scope.profile.experience.coporations.splice(i, 1);
                 break;
             }
