@@ -557,6 +557,10 @@
                                         <span class="col-md-4">Skill:</span>
                                         <textarea ng-model="Skill" class="col-md-7 textareainDialog"></textarea>
                                     </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Remove Main Skill:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickRemoveMainSkill()" >Remove Main Skill</button>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
@@ -593,19 +597,77 @@
                         <div class="col-md-10">
                             <p class="partTitle">Education</p>
                         </div>
-                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditEducations" ng-click="onClickEditEducations()"><img class="icon" src="img/editicon.png"></button>
+                        <!-- Dialog -->
+                        <div class="modal fade EditEducations" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Educations Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Add Education:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickAddEducation()" >Add Education</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
+                        <!-- Dialog -->
+                        <div class="modal fade EditEducation" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Education Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Name:</span>
+                                        <input ng-model="EducationName" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Logo:</span>
+                                        <input ng-model="EducationLogo" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Ref:</span>
+                                        <input ng-model="EducationRef" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Description:</span>
+                                        <textarea ng-model="EducationDes" class="col-md-7 textareainDialog"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Remove Education:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickRemoveEducation()" >Remove Education</button>
+                                    </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKEducation()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                     </div>
                     <div class="row" ng-repeat="education in profile.educations">
                         <div class="col-md-8">
                             <h4>{{education.name}}</h4>
                             <p>{{education.description}}</p>
                         </div>
-                        <div class="col-md-2 col-md-offset-2">
+                        <div class="col-md-2 col-md-offset-1">
                             <a href="{{education.ref}}"><img ng-src="{{education.logo}}" class = "comimg"> </a>
                         </div>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditEducation" ng-click="onClickEditEducation(education)"><img class="icon" src="img/editicon.png"></button>
                         <br><br><br><br><br><br>
                     </div>
-                    <input ng-model="inputt"></input>
                 </div>
                 <!-- End Education -->
               </div>

@@ -194,6 +194,7 @@ App.controller('profileController', function($scope, $http) {
     
     $scope.tmpSkill;
     
+    
     $scope.onClickEditSkill = function(s){
         $scope.tmpSkill = s;
         $scope.Skill = "";
@@ -212,6 +213,54 @@ App.controller('profileController', function($scope, $http) {
             }
             else{
                 str+=$scope.Skill[i];
+            }
+        }
+    };
+    
+    $scope.onClickRemoveMainSkill = function(){
+        for(var i =0;i<$scope.profile.skillboard.length;i++){
+            if($scope.profile.skillboard[i].name === $scope.tmpSkill.name){
+                $scope.profile.skillboard.splice(i, 1)
+                break;
+            }
+        }
+    };
+    
+    
+    $scope.onClickEditEducations = function(){
+
+    };
+    
+    $scope.onClickAddEducation = function(){
+        $scope.profile.educations.push({
+        name: "School's name",
+        description: "About this School",
+        ref:"http://www.TheirSite.com/",
+        logo: "./img/logoSample.png" 
+        });
+    };
+    $scope.tmpEducation;
+    
+    $scope.onClickEditEducation = function(e){
+        $scope.tmpEducation = e;
+        $scope.EducationName = $scope.tmpEducation.name;
+        $scope.EducationLogo = $scope.tmpEducation.logo;
+        $scope.EducationRef = $scope.tmpEducation.ref;
+        $scope.EducationDes = $scope.tmpEducation.description;
+    };
+    
+    $scope.onClickOKEducation = function(){
+        $scope.tmpEducation.name = $scope.EducationName;
+        $scope.tmpEducation.logo = $scope.EducationLogo;
+        $scope.tmpEducation.ref = $scope.EducationRef;
+        $scope.tmpEducation.description = $scope.EducationDes;
+    };
+    
+    $scope.onClickRemoveEducation = function(){
+        for(var i = 0;i<$scope.profile.educations.length;i++){
+            if($scope.profile.educations[i].name === $scope.tmpEducation.name){
+                $scope.profile.educations.splice(i, 1);
+                break;
             }
         }
     };
