@@ -24,18 +24,30 @@
                         
                         <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image">
                         <div class = "col-md-9 infoHeight" >
-                            <span class = "row col-md-12 name"><b>{{profile.name.firstname + " " + profile.name.middlename + " " + profile.name.lastname}}</b></span>
-                            <span class = "row col-md-12 job">{{profile.job}}</span>
+                            <div class="row">
+                                <span class = "name"><b>{{profile.name.firstname + " " + profile.name.middlename + " " + profile.name.lastname}}</b></span>
+                                <button class = "btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                            </div>
+                            <div class="row">
+                                <span class = "job">{{profile.job}}</span>
+                                <button class = "btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                            </div>
                             <div class="row">
                                 <a href="{{profile.nation.ref}}" class="nation">{{profile.nation.name}}</a>
                                 <span> | </span>
                                 <a href="{{profile.industry.ref}}">{{profile.industry.name}}</a>
+                                <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                             </div>
-                            <p class="col-md-12"></p>
-                            <span class = "row col-md-12"><span class = "blurLabel">Education: </span>{{profile.education}}</span>
+                            <div class="row">
+                                <span class = "education"><span class = "blurLabel">Previous: </span>{{profile.educations[1].name}}</span>
+                            </div>
+                            <div class = "row">
+                                <span class="education"><span class = "blurLabel">Education: </span>{{profile.educations[0].name}}</span>
+                                <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                            </div>
                         </div>
-                        <div class = "col-md-9 row">
-                            <div class="dropdown col-md-10">
+                        <div class = "row">
+                            <div class="dropdown col-md-7">
                                 <div class="btn-group"> 
                                     <a href="{{'mailto:' + profile.email}}" class="btn btn-primary sendMail">Send {{profile.name.lastname}} InMail</a> 
                                     <button class="btn btn-primary dropdown-toggle dropdownMail" type="button" data-toggle="dropdown"><span class="caret"></span></button>
@@ -50,7 +62,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class = "col-md-2">
+                            <div class = "col-md-1">
                                 <table>
                                     <tr>
                                         <td><b>{{profile.follow}}</b></td>
@@ -71,6 +83,7 @@
                             <div class="col-md-4">
                                 <a href="{{'mailto:' + profile.email}}"><span>{{profile.email}}</span></a>
                             </div>
+                             <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                          </div>
                          
                           <div class="row">
@@ -80,6 +93,7 @@
                             <div class="col-md-4">
                                 <a href="{{profile.facebook}}"><span>{{profile.facebook}}</span></a>
                             </div>
+                              <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                          </div>
                          
                        <div class="row">
@@ -89,6 +103,7 @@
                             <div class="col-md-4">
                                 <span>{{profile.phone}}</span>
                             </div>
+                           <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                          </div>
                     </div>
                 </div>
@@ -127,9 +142,10 @@
                         <div class="col-md-1">
                             <img src="img/Sumary.png">
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <p class="partTitle">Summary</p>
                         </div>
+                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -145,9 +161,10 @@
                         <div class="col-md-1">
                             <img src="img/Experience.png">
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <p class="partTitle">Experience</p>
                         </div>
+                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                     </div>
                     
                     <div class="row">
@@ -180,9 +197,10 @@
                         <div class="col-md-1">
                             <img src="img/Project.png">
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <p class="partTitle">Project</p>
                         </div>
+                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                     </div>
                     <div ng-repeat="project in profile.projects">
                         <div class="row">
@@ -210,9 +228,10 @@
                         <div class="col-md-1">
                             <img src="img/Skills.png">
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <p class="partTitle">Skills</p>
                         </div>
+                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                     </div>
                     <div ng-repeat="skills in profile.skillboard">
                         <div class="row">
@@ -236,9 +255,10 @@
                         <div class="col-md-1">
                             <img src="img/Education.png">
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <p class="partTitle">Education</p>
                         </div>
+                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
                     </div>
                     <div class="row" ng-repeat="education in profile.educations">
                         <div class="col-md-8">
