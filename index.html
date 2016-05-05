@@ -319,7 +319,6 @@
                                     <div class="row">
                                         <span class="col-md-3">Add Company:</span>
                                         <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickAddCoporation()" >Add Company</button>
-                                        
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -359,24 +358,28 @@
                           <div class="modal-dialog modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    Company
+                                    Company Editor
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <span class="col-md-3">Coporation Name:</span>
+                                        <span class="col-md-3">Corporation Name:</span>
                                         <input ng-model="ComName" class="col-md-8">
                                     </div>
                                     <div class="row">
-                                        <span class="col-md-3">Coporation Ref:</span>
+                                        <span class="col-md-3">Corporation Ref:</span>
                                         <input ng-model="ComRef" class="col-md-8">
                                     </div>
                                     <div class="row">
-                                        <span class="col-md-3">Coporation Logo:</span>
+                                        <span class="col-md-3">Corporation Logo:</span>
                                         <input ng-model="ComLogo" class="col-md-8">
                                     </div>
                                     <div class="row">
-                                        <span class="col-md-3">Coporation Description:</span>
+                                        <span class="col-md-3">Corporation Description:</span>
                                         <textarea ng-model="ComDes" class="col-md-8 textareainDialog"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-3">Remove Corporation:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickRemoveCoporation()" >Remove Company</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -399,12 +402,101 @@
                         <div class="col-md-10">
                             <p class="partTitle">Project</p>
                         </div>
-                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditProjects" ng-click="onClickEditProjects()"><img class="icon" src="img/editicon.png"></button>
+                        <!-- Dialog -->
+                        <div class="modal fade EditProjects" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Projects Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-3">Add Project:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickAddProject()" >Add Project</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
+                        <!-- Dialog -->
+                        <div class="modal fade EditOneProject" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Project Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Project Name:</span>
+                                        <input ng-model="ProjectName" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Project Description:</span>
+                                        <textarea ng-model="ProjectDes" class="col-md-7 textareainDialog"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Add Dev:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickAddDev()" >Add Dev</button>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Remove Project:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickRemoveProject()" >Remove Project</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKOneProject()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
+                        <!-- Dialog -->
+                        <div class="modal fade EditDev" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Develop Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Develop Name:</span>
+                                        <input ng-model="DevName" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Develop Image:</span>
+                                        <input ng-model="DevImg" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Develop Facebook:</span>
+                                        <input ng-model="DevFacebook" class="col-md-7">
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-4">Remove Develop:</span>
+                                        <button type="button" class="btn btn-default col-md-3" data-dismiss="modal" ng-click="onClickRemoveDev()" >Remove Develop</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKDev()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                     </div>
                     <div ng-repeat="project in profile.projects">
                         <div class="row">
+                            <span class="margin projectHeader"><b>{{project.name}}</b></span>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditOneProject" ng-click="onClickEditOneProject(project)"><img class="icon" src="img/editicon.png"></button>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
-                                <h4>{{project.name}}</h4>
                                 <p>{{project.description}}</p>
                             </div> 
                         </div>
@@ -414,6 +506,7 @@
                                     <img ng-src="{{dev.image}}" class="personalImg">
                                     <span>{{dev.name}}</span>
                                 </a>
+                                <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditDev" ng-click="onClickEditDev(project, dev)"><img class="icon" src="img/editicon.png"></button>
                             </div> 
                         </div>
                         <br>
@@ -430,12 +523,55 @@
                         <div class="col-md-10">
                             <p class="partTitle">Skills</p>
                         </div>
-                        <button class="btn btn-default btn-xs"><img class="icon" src="img/editicon.png"></button>
+                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditMainSkills" ng-click="onClickEditMainSkills()"><img class="icon" src="img/editicon.png"></button>
+                        <!-- Dialog -->
+                        <div class="modal fade EditMainSkills" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Main Skills Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Main Skills:</span>
+                                        <input ng-model="MainSkill" class="col-md-7">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKMainSkills()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
+                        <!-- Dialog -->
+                        <div class="modal fade EditSkill" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Skill Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-4">Skill:</span>
+                                        <textarea ng-model="Skill" class="col-md-7 textareainDialog"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKSkill()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                     </div>
                     <div ng-repeat="skills in profile.skillboard">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>{{skills.name}}</p>
+                                <span>{{skills.name}}</span>
+                                <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".EditSkill" ng-click="onClickEditSkill(skills)"><img class="icon" src="img/editicon.png"></button>
                             </div>
                         </div>
                         <div class="row">

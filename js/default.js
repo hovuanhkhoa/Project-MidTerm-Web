@@ -77,18 +77,18 @@ App.controller('profileController', function($scope, $http) {
     $scope.tmpCom;
     
      $scope.onClickEditCoporation = function(c){
-         tmpCom = c;
-         $scope.ComName = tmpCom.name;
-         $scope.ComRef = tmpCom.ref;
-         $scope.ComLogo = tmpCom.logo;
-         $scope.ComDes = tmpCom.description;
+         $scope.tmpCom = c;
+         $scope.ComName = $scope.tmpCom.name;
+         $scope.ComRef = $scope.tmpCom.ref;
+         $scope.ComLogo = $scope.tmpCom.logo;
+         $scope.ComDes = $scope.tmpCom.description;
     };
     
     $scope.onClickOKCoporation = function(){
-        tmpCom.name = $scope.ComName;
-        tmpCom.ref = $scope.ComRef;
-        tmpCom.logo = scope.ComLogo;
-        tmpCom.description = $scope.ComDes;
+        $scope.tmpCom.name = $scope.ComName;
+        $scope.tmpCom.ref = $scope.ComRef;
+        $scope.tmpCom.logo = scope.ComLogo;
+        $scope.tmpCom.description = $scope.ComDes;
     };
     
     $scope.onClickAddCoporation = function(){
@@ -100,7 +100,120 @@ App.controller('profileController', function($scope, $http) {
         });
     };
     
+    $scope.onClickRemoveCoporation = function(){
+        var t = $scope.profile.experience.coporations;
+        for(var i =0; i<t.length ; i++){
+            if(t[i].name === tmpCom.name){
+                $scope.profile.experience.coporations.splice(i, 1);
+                break;
+            }
+        }
+    };
     
+    $scope.onClickAddProject = function(){
+        $scope.profile.projects.push({
+            name: "New Project",
+            description: "About this project!",
+            developers: [
+            {
+                image: "./img/myImage.png",
+                fbref:"https://www.facebook.com/ho.v.khoa",
+                name: "Ho Vu Anh Khoa"
+            }
+            ]
+        });
+    };
+    $scope.tmpProject;
+    $scope.tmpDev;
     
+    $scope.onClickEditOneProject = function(p){
+         $scope.tmpProject = p;
+         $scope.ProjectName = $scope.tmpProject.name;
+         $scope.ProjectDes = $scope.tmpProject.description;
+    };
+    
+    $scope.onClickOKOneProject = function(){
+        $scope.tmpProject.name = $scope.ProjectName;
+        $scope.tmpProject.description = $scope.ProjectDes;
+    };
+    
+    $scope.onClickRemoveProject = function(){
+        var t = $scope.profile.projects;
+        for(var i = 0;i<t.length;i++){
+            if(t[i].name === $scope.tmpProject.name){
+                t.splice(i, 1);
+                break;
+            }
+        }
+    };
+
+    $scope.onClickAddDev = function(){
+        $scope.tmpProject.developers.push({      
+            "image": "./img/myImage.png",
+            "fbref":"https://www.facebook.com/ho.v.khoa",
+            "name": "Ho Vu Anh Khoa"
+        });
+    };
+    
+    $scope.onClickEditDev = function(p,d){
+         $scope.tmpProject = p;
+         $scope.tmpDev = d;
+         $scope.DevName = $scope.tmpDev.name;
+         $scope.DevImg = $scope.tmpDev.image;
+         $scope.DevFacebook = $scope.tmpDev.fbref;
+    };
+    
+    $scope.onClickOKDev = function(){
+         $scope.tmpDev.name = $scope.DevName;
+         $scope.tmpDev.image = $scope.DevImg;
+         $scope.tmpDev.fbref = $scope.DevFacebook;
+    };
+    
+    $scope.onClickRemoveDev = function(){
+        var t = $scope.tmpProject.developers;
+        for(var i = 0;i<t.length;i++){
+            if(t[i].name === $scope.tmpDev.name){
+                t.splice(i, 1);
+                break;
+            }
+        }
+    };
+    
+    $scope.onClickEditMainSkills = function(){
+    };
+    
+    $scope.onClickOKMainSkills = function(){
+        $scope.profile.skillboard.push({
+            name: $scope.MainSkill,
+            skill: [
+          "Eating",
+                "Sleeping"
+        ]
+        });
+    };
+    
+    $scope.tmpSkill;
+    
+    $scope.onClickEditSkill = function(s){
+        $scope.tmpSkill = s;
+        $scope.Skill = "";
+        for(var i =0;i<$scope.tmpSkill.skill.length;i++){
+            $scope.Skill += $scope.tmpSkill.skill[i] +"; ";
+        }
+    };
+    
+    $scope.onClickOKSkill = function(){
+        $scope.tmpSkill.skill = [];
+        var str="";
+        for(var i =0;i<$scope.Skill.length;i++){
+            if($scope.Skill[i] === ';'){
+                $scope.tmpSkill.skill.push(str);
+                str=""
+            }
+            else{
+                str+=$scope.Skill[i];
+            }
+        }
+    };
     
 });
