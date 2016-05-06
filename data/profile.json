@@ -45,22 +45,12 @@
         "name": "MyPaint",
         "description": "MyPaint is developed in .Net framework. It can draw many thing, use many layout, merge layout and more. Paint can connect many people to draw in realtime.",
         "developers": [
-          {
-            "image": "./img/myImage.png",
-            "fbref":"https://www.facebook.com/ho.v.khoa",
-            "name": "Ho Vu Anh Khoa"
-          }
         ]
       },
       {
         "name": "Gomoku",
         "description": "Gomoku is developed in .Net framework and using MVVM pattern. It is a popular game in world. You can chat, play game and share various file to your partner.",
         "developers": [
-          {
-            "image": "./img/myImage.png",
-            "fbref":"https://www.facebook.com/ho.v.khoa",
-            "name": "Ho Vu Anh Khoa"
-          },
           {
             "image": "./img/James.jpg",
             "fbref":"https://www.facebook.com/James.Blusaos",
@@ -77,11 +67,6 @@
         "name": "Calculator",
         "description": "Calculator is developed in android. It can calculate with perfect UI, UX.",
         "developers": [
-          {
-            "image": "./img/myImage.png",
-            "fbref":"https://www.facebook.com/ho.v.khoa",
-            "name": "Ho Vu Anh Khoa"
-          }
         ]
       }
     ],

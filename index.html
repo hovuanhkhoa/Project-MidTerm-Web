@@ -21,8 +21,32 @@
                 <!-- Header Body -->
                 <div class = "panel-body">
                     <div class="row">
-                        
-                        <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image">
+                        <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image" data-toggle="modal" data-target=".EditImg" ng-click="onClickEditImg()">
+                        <!-- Dialog -->
+                        <div class="modal fade EditImg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Image Editor
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <span class="col-md-5">Ref:</span>
+                                        <input ng-model="ImgRef" class="col-md-6">
+                                    </div>
+                                     <div class="row">
+                                        <span class="col-md-5">Image:</span>
+                                        <img ng-src="{{ImgRef}}" class="col-md-6 myImg">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                    <button type="button" class="btn btn-primary"  ng-click="onClickOKImg()" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dialog -->
                         <div class = "col-md-9 infoHeight" >
                             <div class="row">
                                 <span class="name margin"><b>{{profile.name.firstname}}</b></span>
@@ -371,6 +395,10 @@
                                         <span class="col-md-3">Corporation Logo:</span>
                                         <input ng-model="ComLogo" class="col-md-8">
                                     </div>
+                                     <div class="row">
+                                        <span class="col-md-3">Image:</span>
+                                        <img ng-src="{{ComLogo}}" class="comimg">
+                                    </div>
                                     <div class="row">
                                         <span class="col-md-3">Corporation Description:</span>
                                         <textarea ng-model="ComDes" class="col-md-8 textareainDialog"></textarea>
@@ -470,6 +498,10 @@
                                         <span class="col-md-4">Develop Image:</span>
                                         <input ng-model="DevImg" class="col-md-7">
                                     </div>
+                                     <div class="row">
+                                        <span class="col-md-4">Image:</span>
+                                        <img ng-src="{{DevImg}}" class="personalImg">
+                                    </div>
                                     <div class="row">
                                         <span class="col-md-4">Develop Facebook:</span>
                                         <input ng-model="DevFacebook" class="col-md-7">
@@ -499,6 +531,12 @@
                             </div> 
                         </div>
                         <div class="row">
+                            <div class="col-md-4">
+                                <a href="{{profile.facebook}}">
+                                    <img ng-src="{{profile.image}}" class="personalImg">
+                                    <span>{{profile.name.firstname}} {{profile.name.middlename}} {{profile.name.lastname}}</span>
+                                </a>
+                            </div> 
                             <div class="col-md-4" ng-repeat="dev in project.developers">
                                 <a href="{{dev.fbref}}">
                                     <img ng-src="{{dev.image}}" class="personalImg">
@@ -632,6 +670,11 @@
                                         <span class="col-md-4">Logo:</span>
                                         <input ng-model="EducationLogo" class="col-md-7">
                                     </div>
+                                    
+                                     <div class="row">
+                                        <span class="col-md-4">Image:</span>
+                                        <img ng-src="{{EducationLogo}}" class="comimg">
+                                    </div>
                                     <div class="row">
                                         <span class="col-md-4">Ref:</span>
                                         <input ng-model="EducationRef" class="col-md-7">
@@ -671,6 +714,5 @@
               </div>
           </div>
         </div>
-        
     </body>
 </html>

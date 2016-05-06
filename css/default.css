@@ -33,6 +33,9 @@ body{
     width: 230px;
     height: 200px;
 }
+.myImg:hover{
+    cursor:pointer;
+}
 
 .infoHeight{
     min-height: 165px;

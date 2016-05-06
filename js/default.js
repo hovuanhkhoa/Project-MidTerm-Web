@@ -10,6 +10,15 @@ App.controller('profileController', function($scope, $http) {
         element.style.height =  element.scrollHeight + "px";    
     };
     
+    
+     $scope.onClickEditImg = function(){
+        $scope.ImgRef = $scope.profile.image;
+    };
+    
+    $scope.onClickOKImg = function(){
+        $scope.profile.image = $scope.ImgRef;
+    };
+    
      $scope.onClickEditName = function(){
         $scope.firstname = $scope.profile.name.firstname;
         $scope.middlename = $scope.profile.name.middlename;
@@ -62,6 +71,7 @@ App.controller('profileController', function($scope, $http) {
     
     $scope.onClickOKSummary = function(){
        $scope.profile.summary.text = $scope.summary;
+        //$scope.testtest = angular.toJson($scope.profile, true);
     };
     
      $scope.onClickEditExperience = function(){
@@ -115,11 +125,6 @@ App.controller('profileController', function($scope, $http) {
             name: "New Project",
             description: "About this project!",
             developers: [
-            {
-                image: "./img/myImage.png",
-                fbref:"https://www.facebook.com/ho.v.khoa",
-                name: "Ho Vu Anh Khoa"
-            }
             ]
         });
     };
@@ -149,9 +154,9 @@ App.controller('profileController', function($scope, $http) {
 
     $scope.onClickAddDev = function(){
         $scope.tmpProject.developers.push({      
-            "image": "./img/myImage.png",
-            "fbref":"https://www.facebook.com/ho.v.khoa",
-            "name": "Ho Vu Anh Khoa"
+            "image": "./img/newmember.png",
+            "fbref":"https://www.facebook.com/Facebook",
+            "name": "New Member"
         });
     };
     
