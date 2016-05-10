@@ -1,9 +1,12 @@
-var App = angular.module('App', []);
+var App = angular.module('App', ['firebase']);
+var webApp = "https://khoaho.firebaseio.com/";
 
-App.controller('profileController', function($scope, $http) {
-  $http.get('./data/profile.json').then(function(res){
-    $scope.profile = res.data;   
-  });
+App.controller('profileController', function($scope, $firebase) {
+    
+    var ref = new Firebase(webApp);
+    var sync = $firebase(ref);
+    
+    $scope.profile = sync.$asObject();
     
     $scope.autoExpand = function(e) {
         var element = typeof e === 'object' ? e.target : document.getElementById(e);
@@ -17,6 +20,7 @@ App.controller('profileController', function($scope, $http) {
     
     $scope.onClickOKImg = function(){
         $scope.profile.image = $scope.ImgRef;
+        $scope.onSave();
     };
     
      $scope.onClickEditName = function(){
@@ -29,6 +33,7 @@ App.controller('profileController', function($scope, $http) {
         $scope.profile.name.firstname = $scope.firstname;
         $scope.profile.name.middlename = $scope.middlename;
         $scope.profile.name.lastname = $scope.lastname;
+        $scope.onSave();
     };
     
      $scope.onClickEditJob = function(){
@@ -37,6 +42,7 @@ App.controller('profileController', function($scope, $http) {
     
     $scope.onClickOKJob = function(){
         $scope.profile.job = $scope.job;
+        $scope.onSave();
     };
     
      $scope.onClickEditNation = function(){
@@ -51,6 +57,7 @@ App.controller('profileController', function($scope, $http) {
         $scope.profile.nation.ref = $scope.nationRef;
         $scope.profile.industry.name =  $scope.industry;
         $scope.profile.industry.ref = $scope.industryRef;
+        $scope.onSave();
     };
     
      $scope.onClickEditContact = function(){
@@ -63,6 +70,7 @@ App.controller('profileController', function($scope, $http) {
         $scope.profile.email= $scope.email;
         $scope.profile.facebook= $scope.facebook;
         $scope.profile.phone= $scope.phone;
+        $scope.onSave();
     };
     
      $scope.onClickEditSummary = function(){
@@ -71,6 +79,7 @@ App.controller('profileController', function($scope, $http) {
     
     $scope.onClickOKSummary = function(){
        $scope.profile.summary.text = $scope.summary;
+        $scope.onSave();
         //$scope.testtest = angular.toJson($scope.profile, true);
     };
     
@@ -82,6 +91,7 @@ App.controller('profileController', function($scope, $http) {
     $scope.onClickOKExperience = function(){
         $scope.profile.experience.job = $scope.Exjob;
         $scope.profile.experience.description = $scope.ExDes;
+        $scope.onSave();
     };
     
     $scope.tmpCom;
@@ -99,15 +109,19 @@ App.controller('profileController', function($scope, $http) {
         $scope.tmpCom.ref = $scope.ComRef;
         $scope.tmpCom.logo = $scope.ComLogo;
         $scope.tmpCom.description = $scope.ComDes;
+        $scope.onSave();
     };
     
     $scope.onClickAddCoporation = function(){
+        if (typeof $scope.profile.experience.coporations === 'undefined')
+            $scope.profile.experience.coporations = [];
         $scope.profile.experience.coporations.push({
           name: "New Corporation",
           description: "About corporation",
           ref:"http://www.TheirWebSite.com",
           logo: "./img/logoSample.png"
         });
+        $scope.onSave();
     };
     
     $scope.onClickRemoveCoporation = function(){
@@ -118,15 +132,18 @@ App.controller('profileController', function($scope, $http) {
                 break;
             }
         }
+        $scope.onSave();
     };
     
     $scope.onClickAddProject = function(){
+        if (typeof $scope.profile.projects === 'undefined')
+            $scope.profile.projects = [];
         $scope.profile.projects.push({
             name: "New Project",
             description: "About this project!",
-            developers: [
-            ]
+            developers: []
         });
+        $scope.onSave();
     };
     $scope.tmpProject;
     $scope.tmpDev;
@@ -140,6 +157,7 @@ App.controller('profileController', function($scope, $http) {
     $scope.onClickOKOneProject = function(){
         $scope.tmpProject.name = $scope.ProjectName;
         $scope.tmpProject.description = $scope.ProjectDes;
+        $scope.onSave();
     };
     
     $scope.onClickRemoveProject = function(){
@@ -150,14 +168,18 @@ App.controller('profileController', function($scope, $http) {
                 break;
             }
         }
+        $scope.onSave();
     };
 
     $scope.onClickAddDev = function(){
+        if (typeof $scope.tmpProject.developers === 'undefined')
+            $scope.tmpProject.developers = [];
         $scope.tmpProject.developers.push({      
             "image": "./img/newmember.png",
             "fbref":"https://www.facebook.com/Facebook",
             "name": "New Member"
         });
+        $scope.onSave();
     };
     
     $scope.onClickEditDev = function(p,d){
@@ -172,6 +194,7 @@ App.controller('profileController', function($scope, $http) {
          $scope.tmpDev.name = $scope.DevName;
          $scope.tmpDev.image = $scope.DevImg;
          $scope.tmpDev.fbref = $scope.DevFacebook;
+        $scope.onSave();
     };
     
     $scope.onClickRemoveDev = function(){
@@ -182,6 +205,7 @@ App.controller('profileController', function($scope, $http) {
                 break;
             }
         }
+        $scope.onSave();
     };
     
     $scope.onClickEditMainSkills = function(){
@@ -195,6 +219,7 @@ App.controller('profileController', function($scope, $http) {
                 "Sleeping"
         ]
         });
+        $scope.onSave();
     };
     
     $scope.tmpSkill;
@@ -220,6 +245,7 @@ App.controller('profileController', function($scope, $http) {
                 str+=$scope.Skill[i];
             }
         }
+        $scope.onSave();
     };
     
     $scope.onClickRemoveMainSkill = function(){
@@ -229,6 +255,7 @@ App.controller('profileController', function($scope, $http) {
                 break;
             }
         }
+        $scope.onSave();
     };
     
     
@@ -237,12 +264,15 @@ App.controller('profileController', function($scope, $http) {
     };
     
     $scope.onClickAddEducation = function(){
+        if (typeof $scope.profile.educations === 'undefined')
+            $scope.profile.educations = [];
         $scope.profile.educations.push({
         name: "School's name",
         description: "About this School",
         ref:"http://www.TheirSite.com/",
         logo: "./img/logoSample.png" 
         });
+        $scope.onSave();
     };
     $scope.tmpEducation;
     
@@ -259,6 +289,7 @@ App.controller('profileController', function($scope, $http) {
         $scope.tmpEducation.logo = $scope.EducationLogo;
         $scope.tmpEducation.ref = $scope.EducationRef;
         $scope.tmpEducation.description = $scope.EducationDes;
+        $scope.onSave();
     };
     
     $scope.onClickRemoveEducation = function(){
@@ -268,6 +299,10 @@ App.controller('profileController', function($scope, $http) {
                 break;
             }
         }
+        $scope.onSave();
+    };
+    $scope.onSave = function(){
+      $scope.profile.$save();  
     };
     
 });
