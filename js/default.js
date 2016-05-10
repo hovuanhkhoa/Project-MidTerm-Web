@@ -10,6 +10,7 @@ App.controller('profileController', function($scope, $firebase) {
     
     $scope.autoExpand = function(e) {
         var element = typeof e === 'object' ? e.target : document.getElementById(e);
+        element.style.height = "5px";
         element.style.height =  element.scrollHeight + "px";    
     };
     
