@@ -382,6 +382,9 @@ App.controller('profileController', function($scope, $firebase) {
             $scope.RegisterError = "Email is invalid!";
             return;
         }
+        if($scope.registerPass === ""){
+            return;
+        }
         var userObj = {email: $scope.registerEmail, password: $scope.registerPass};
         var loginauth =  createUser(userObj)
             .then(function () {
@@ -415,6 +418,9 @@ App.controller('profileController', function($scope, $firebase) {
             $scope.LoginError = "Email is invalid!";
             return;
         }  
+        if($scope.loginPass === ""){
+            return;
+        }
         
         var obj = {email: $scope.loginEmail, password: $scope.loginPass};
         var loginauth = authWithPassword(obj);
