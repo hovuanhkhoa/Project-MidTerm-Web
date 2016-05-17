@@ -122,3 +122,14 @@ body{
 .projectHeader{
     font-size: 20px;
 }
+
+.DisplayHidden{
+    display: none;
+}
+
+.DisplayVisible{
+    display: block;
+}
+.error{
+    color: red;
+}

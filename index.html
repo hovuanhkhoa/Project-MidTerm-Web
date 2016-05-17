@@ -19,10 +19,40 @@
     <body ng-controller="profileController">
         <!-- Header -->
         <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">My CV</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+
+                      <li><a href="#" ng-click="onClickRouting('profile')">Profile</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right {{navLogout}}">
+                        <li><a>Hello, {{username}}</a></li>
+                      <li><a href="#" ng-click="onClickRouting('logout')">Logout</a></li>
+                    </ul>
+                      <ul class="nav navbar-nav navbar-right {{navLogin}}">
+                      <li><a href="#" ng-click="onClickRouting('login')">Login</a></li>
+                      <li><a href="#" ng-click="onClickRouting('register')">Register</a></li>
+                    </ul>
+                  </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </nav>
+        </div>
+        <div class="container {{display.info}}">
             <div class = "panel panel-default">
                 <!-- Header Body -->
                 <div class = "panel-body">
                     <div class="row">
+                        
                         <img class = "col-md-3 myImg" ng-src="{{profile.image}}" alt="My Image" data-toggle="modal" data-target=".EditImg" ng-click="onClickEditImg()">
                         <!-- Dialog -->
                         <div class="modal fade EditImg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -271,7 +301,7 @@
         <!-- End Header -->
         
         
-        <div class="container">
+        <div class="container {{display.info}}">
           <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
@@ -715,6 +745,75 @@
                 <!-- End Education -->
               </div>
           </div>
+        </div>
+        <div class="container {{display.login}}">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form id="frmLogin" name="loginForm">
+                        <div class="row">
+                        <h2 class="col-md-12">Login</h2>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-2">Email address: </label>
+                            <input class="col-md-9" ng-model="loginEmail" name="loginEmailName" type="email" placeholder="Enter email" ng-change="onChangeInputLogin()" required>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-2">Password: </label>
+                            <input class="col-md-9" ng-model="loginPass" name="loginPasswordName" type="password" placeholder="Password"ng-change="onChangeInputLogin()"required>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <a href="#" ng-click="onClickLogin()"><button class="btn btn-default col-md-offset-5 col-md-3">Login</button></a>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12" ng-show="loginForm.loginEmailName.$error.required">Email Required!</span>
+                        <span class="error col-md-12" ng-show="loginForm.loginEmailName.$error.email">Email is invalid!</span>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12" ng-show="loginForm.loginPasswordName.$error.required">Password Required!</span>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12">{{LoginError}}</span>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container {{display.register}}">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form id="frmRegister" name="registerForm">
+                        <div class="row">
+                        <h2 class="col-md-12">Register</h2>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-2">Email address: </label>
+                            <input class="col-md-9" ng-model="registerEmail" name="registerEmailName" type="email" placeholder="Enter email" ng-change="onChangeInputRegister()" required>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-2">Password: </label>
+                            <input class="col-md-9" ng-model="registerPass" name="registerPasswordName" type="password" placeholder="Password"ng-change="onChangeInputRegister()"required>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <a href="#" ng-click="onClickRegister()"><button class="btn btn-default col-md-offset-5 col-md-3">Login</button></a>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12" ng-show="registerForm.registerEmailName.$error.required">Email Required!</span>
+                        <span class="error col-md-12" ng-show="registerForm.registerEmailName.$error.email">Email is invalid!</span>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12" ng-show="registerForm.registerPasswordName.$error.required">Password Required!</span>
+                        </div>
+                        <div class="row">
+                        <span class="error col-md-12">{{RegisterError}}</span>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
         </div>
     </body>
 </html>

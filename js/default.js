@@ -1,12 +1,25 @@
 var App = angular.module('App', ['firebase']);
 var webApp = "https://khoaho.firebaseio.com/";
+var hidden = "DisplayHidden";
+var visible = "DisplayVisible";
 
 App.controller('profileController', function($scope, $firebase) {
-    
+    var isLogin = false;
     var ref = new Firebase(webApp);
     var sync = $firebase(ref);
     
     $scope.profile = sync.$asObject();
+    
+    $scope.display = {
+        info : hidden,
+        login: visible,
+        logout: hidden,
+        register: hidden
+    };
+    
+    $scope.navLogout = hidden;
+    $scope.navLogin = visible;
+    
     
     $scope.autoExpand = function(e) {
         var element = typeof e === 'object' ? e.target : document.getElementById(e);
@@ -303,7 +316,167 @@ App.controller('profileController', function($scope, $firebase) {
         $scope.onSave();
     };
     $scope.onSave = function(){
-      $scope.profile.$save();  
+        if(isLogin){
+            $scope.profile.$save();  
+        }
     };
     
+    $scope.onClickRouting = function(s){
+      switch(s){
+        case "login":
+          $scope.display = {
+                info : hidden,
+                login: visible,
+                logout: hidden,
+                register: hidden
+            };
+        break;
+        case "register":
+            $scope.display = {
+                info : hidden,
+                login: hidden,
+                logout: hidden,
+                register: visible
+            };
+        break;
+        case"logout":
+            $scope.display = {
+                info : hidden,
+                login: visible,
+                logout: hidden,
+                register: hidden
+            };
+          if(isLogin)
+          {
+            ref.unauth();
+              isLogin = false;
+          $scope.navLogout = hidden;
+            $scope.navLogin = visible;
+          }
+        break;
+          case "profile":
+              if(isLogin){
+                  $scope.display = {
+                    info : visible,
+                    login: hidden,
+                    logout: hidden,
+                    register: hidden
+                    };
+              }
+              else{
+                  $scope.onClickRouting('login');
+              }
+              break;
+        default:break;
+      }  
+    };
+    $scope.onChangeInputLogin = function(){
+        $scope.LoginError = "";
+    }
+    $scope.onChangeInputRegister = function(){
+        $scope.RegisterError = "";
+    }
+    
+    $scope.onClickRegister =  function() {
+        if(!validateEmail($scope.registerEmail)){
+            $scope.RegisterError = "Email is invalid!";
+            return;
+        }
+        var userObj = {email: $scope.registerEmail, password: $scope.registerPass};
+        var loginauth =  createUser(userObj)
+            .then(function () {
+            return authWithPassword(userObj);
+        });
+        $.when(loginauth)
+            .then(function (authData) {
+            isLogin = true;
+            $scope.username = userObj.email;
+            $scope.navLogout = visible;
+            $scope.navLogin = hidden;
+            $scope.RegisterError = "";
+            $scope.display = {
+                info : visible,
+                login: hidden,
+                logout: hidden,
+                register: hidden
+            };
+            $scope.$apply();
+            
+        }, function (err) {
+            isLogin = false;
+            $scope.RegisterError = "Email is extinct!!!";
+            $scope.$apply();
+        });
+    }
+    
+    $scope.onClickLogin = function(){
+        if(!validateEmail($scope.loginEmail))
+        {
+            $scope.LoginError = "Email is invalid!";
+            return;
+        }  
+        
+        var obj = {email: $scope.loginEmail, password: $scope.loginPass};
+        var loginauth = authWithPassword(obj);
+        
+        $.when(loginauth)
+            .then(function (authData) {
+            isLogin = true;
+            $scope.username = obj.email;
+            $scope.navLogout = visible;
+            $scope.navLogin = hidden;
+            $scope.LoginError = "";
+            $scope.display = {
+                info : visible,
+                login: hidden,
+                logout: hidden,
+                register: hidden
+            };
+            $scope.$apply();
+            
+        }, function (err) {
+            isLogin = false;
+            $scope.LoginError = "Email or password is invalid!!!";
+            $scope.$apply();
+        });
+    };
+    
+    
+    function authWithPassword(userObj) {
+        var deferred = $.Deferred();
+        //console.log(userObj);
+        ref.authWithPassword(userObj, function onAuth(err, user) {
+            if (err) {
+                deferred.reject(err);
+            }
+
+            if (user) {
+                deferred.resolve(user);
+            }
+
+        });
+
+        return deferred.promise();
+    }
+    
+    function createUser(userObj) {
+        var deferred = $.Deferred();
+        ref.createUser(userObj, function (err) {
+
+            if (!err) {
+                deferred.resolve();
+            } else {
+                deferred.reject(err);
+            }
+
+        });
+
+        return deferred.promise();
+    }
+    
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+     
 });
